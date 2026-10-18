@@ -15,8 +15,8 @@
   "enableNotifications": true,
   "startUrl": "/index.html?source=android",
   "iconUrl": "https://mocypg.vercel.app/image-14.jpg",
-  "maskableIconUrl": "https://mocypg.vercel.app/app-icon.svg",
-  "monochromeIconUrl": "https://mocypg.vercel.app/app-icon.svg",
+  "maskableIconUrl": "https://mocypg.vercel.app/image-14.jpg",
+  "monochromeIconUrl": "https://mocypg.vercel.app/image-14.jpg",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "./moc-ypg.keystore",
