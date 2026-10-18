@@ -41,8 +41,12 @@ jobs:
       - name: Configure Bubblewrap to use the runner's installed Android tools
         run: |
           mkdir -p "$HOME/.bubblewrap"
+          # Bubblewrap's legacy SDK validator expects tools/bin/sdkmanager.
+          mkdir -p "$ANDROID_HOME/tools/bin"
+          ln -sf "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "$ANDROID_HOME/tools/bin/sdkmanager"
           printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
           cat "$HOME/.bubblewrap/config.json"
+          ls -l "$ANDROID_HOME/tools/bin/sdkmanager"
 
       - name: Generate Android project files from the saved TWA configuration
         working-directory: android-app
