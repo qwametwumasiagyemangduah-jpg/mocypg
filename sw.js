@@ -68,10 +68,10 @@ self.addEventListener("fetch", (event) => {
 
 // Push delivery requires a push subscription and a trusted server-side sender.
 self.addEventListener("push", (event) => {
-  let data = { title: "YPG Ministry", body: "There is a new ministry update.", url: "/newsroom.html" };
+  let data = { title: "Ministry of Communications YPG", body: "There is a new ministry update.", url: "/newsroom.html" };
   try { if (event.data) data = { ...data, ...event.data.json() }; } catch (_) {}
   event.waitUntil(
-    self.registration.showNotification(data.title || "YPG Ministry", {
+    self.registration.showNotification(data.title || "Ministry of Communications YPG", {
       body: data.body || "There is a new ministry update.",
       icon: "/app-icon.svg",
       badge: "/app-icon.svg",
