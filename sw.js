@@ -1,4 +1,4 @@
-const CACHE_NAME = "ypg-ministry-v2";
+const CACHE_NAME = "ypg-ministry-v3";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -12,6 +12,7 @@ const CORE_ASSETS = [
   "/style.css",
   "/site.js",
   "/image-14.jpg",
+  "/app-icon.svg",
   "/offline.html"
 ];
 
@@ -72,8 +73,8 @@ self.addEventListener("push", (event) => {
   event.waitUntil(
     self.registration.showNotification(data.title || "YPG Ministry", {
       body: data.body || "There is a new ministry update.",
-      icon: "/image-14.jpg",
-      badge: "/image-14.jpg",
+      icon: "/app-icon.svg",
+      badge: "/app-icon.svg",
       data: { url: data.url || "/newsroom.html" }
     })
   );
