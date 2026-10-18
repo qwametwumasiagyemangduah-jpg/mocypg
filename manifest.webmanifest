@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "Ministry of Communications, Digital Technology and Innovations — YPG",
+  "short_name": "YPG Ministry",
+  "description": "Official Youth Parliament Ghana Ministry of Communications, Digital Technology and Innovations information portal.",
+  "lang": "en-GH",
+  "start_url": "/index.html?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f6f5f1",
+  "theme_color": "#071b3a",
+  "categories": [
+    "government",
+    "news",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "/image-14.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
