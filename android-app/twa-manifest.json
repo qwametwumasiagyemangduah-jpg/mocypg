@@ -1,0 +1,49 @@
+{
+  "packageId": "moc.ypg",
+  "host": "mocypg.vercel.app",
+  "name": "Ministry of Communications YPG",
+  "launcherName": "MoC YPG",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "themeColor": "#071b3a",
+  "themeColorDark": "#071b3a",
+  "navigationColor": "#071b3a",
+  "navigationColorDark": "#071b3a",
+  "navigationDividerColor": "#d6ad55",
+  "navigationDividerColorDark": "#d6ad55",
+  "backgroundColor": "#f6f5f1",
+  "enableNotifications": true,
+  "startUrl": "/index.html?source=android",
+  "iconUrl": "https://mocypg.vercel.app/image-14.jpg",
+  "maskableIconUrl": "https://mocypg.vercel.app/app-icon.svg",
+  "monochromeIconUrl": "https://mocypg.vercel.app/app-icon.svg",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./moc-ypg.keystore",
+    "alias": "mocypg"
+  },
+  "appVersionCode": 1,
+  "appVersion": "1.0.0",
+  "shortcuts": [
+    {
+      "name": "Newsroom",
+      "shortName": "News",
+      "url": "/newsroom.html",
+      "chosenIconUrl": "https://mocypg.vercel.app/image-14.jpg"
+    },
+    {
+      "name": "Programmes",
+      "shortName": "Programmes",
+      "url": "/programmes.html",
+      "chosenIconUrl": "https://mocypg.vercel.app/image-14.jpg"
+    }
+  ],
+  "webManifestUrl": "https://mocypg.vercel.app/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "enableSiteSettingsShortcut": true,
+  "minSdkVersion": 23,
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "generatorApp": "bubblewrap-cli"
+}
