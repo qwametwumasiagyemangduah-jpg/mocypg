@@ -1,0 +1,8 @@
+# Keep signing material and local build outputs out of source control.
+*.keystore
+*.jks
+*.p12
+*.pfx
+local.properties
+/build/
+/app/build/
