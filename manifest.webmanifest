@@ -1,7 +1,7 @@
 {
   "name": "Ministry of Communications YPG",
-  "short_name": "Ministry of Communications YPG",
-  "description": "Youth Parliament Ghana Ministry of Communications, Digital Technology and Innovations app.",
+  "short_name": "MoC YPG",
+  "description": "Youth Parliament Ghana Ministry of Communications, Digital Technology and Innovations app for news, announcements, programmes and public information.",
   "lang": "en-GH",
   "start_url": "/index.html?source=pwa",
   "scope": "/",
@@ -11,6 +11,18 @@
   "theme_color": "#071b3a",
   "categories": ["government", "news", "education"],
   "icons": [
+    {
+      "src": "/image-14.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/image-14.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
     {
       "src": "/app-icon.svg",
       "sizes": "any",
