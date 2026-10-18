@@ -1,0 +1,75 @@
+name: Build MoC YPG Android test app
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "android-app/twa-manifest.json"
+      - "android-app/**"
+      - ".github/workflows/android-build.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Bubblewrap
+        run: npm install --global @bubblewrap/cli
+
+      - name: Generate Android project files from the saved TWA configuration
+        working-directory: android-app
+        run: bubblewrap update --manifest=twa-manifest.json --skipVersionUpgrade
+
+      - name: Create temporary signing key for device testing
+        working-directory: android-app
+        env:
+          TEST_KEYSTORE_PASSWORD: ${{ secrets.MOCYPG_TEST_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -z "$TEST_KEYSTORE_PASSWORD" ]; then
+            echo "MOCYPG_TEST_KEYSTORE_PASSWORD is not configured. Creating a temporary key for this test build only."
+            TEST_KEYSTORE_PASSWORD="$(openssl rand -base64 24)"
+          fi
+          keytool -genkeypair -v \
+            -keystore moc-ypg.keystore \
+            -storepass "$TEST_KEYSTORE_PASSWORD" \
+            -keypass "$TEST_KEYSTORE_PASSWORD" \
+            -alias mocypg \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=MoC YPG Test, OU=Youth Parliament Ghana, O=Youth Parliament Ghana, L=Kumasi, ST=Ashanti, C=GH" \
+            -noprompt
+          echo "BUBBLEWRAP_KEYSTORE_PASSWORD=$TEST_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+          echo "BUBBLEWRAP_KEY_PASSWORD=$TEST_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+
+      - name: Build signed test APK and App Bundle
+        working-directory: android-app
+        run: bubblewrap build --manifest=twa-manifest.json --signingKeyPath=./moc-ypg.keystore --signingKeyAlias=mocypg --skipPwaValidation
+
+      - name: Upload Android test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: moc-ypg-android-test-build
+          path: |
+            android-app/app-release-signed.apk
+            android-app/app-release-bundle.aab
+          if-no-files-found: error
+          retention-days: 7
