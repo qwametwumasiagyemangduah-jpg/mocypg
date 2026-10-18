@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Ministry of Communications YPG</title>
+  <desc id="desc">Navy and gold emblem for the Ministry of Communications YPG.</desc>
+  <rect width="512" height="512" rx="112" fill="#071b3a"/>
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#d6ad55" stroke-width="8"/>
+  <path d="M118 154h276v24H118z" fill="#d6ad55"/>
+  <path d="M142 205h42v106h-26v-66l-34 43-34-43v66H64V205h42l18 25z" fill="#fff"/>
+  <path d="M210 205h30v106h-30zM253 205h28l39 59v-59h29v106h-27l-40-60v60h-29z" fill="#fff"/>
+  <path d="M370 205h78v25h-49v16h43v23h-43v17h50v25h-79z" fill="#d6ad55" transform="translate(-6 0)"/>
+  <path d="M112 354h288" stroke="#d6ad55" stroke-width="5" stroke-linecap="round"/>
+  <text x="256" y="402" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="8" fill="#fff">YPG</text>
+  <text x="256" y="438" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="#d6ad55">COMMUNICATIONS</text>
+</svg>
