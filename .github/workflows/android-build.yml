@@ -33,10 +33,13 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
         with:
-          packages: 'platform-tools'
+          # Avoid the retired SDK "tools" package. Install the exact packages below.
+          packages: ''
 
-      - name: Install Bubblewrap
-        run: npm install --global @bubblewrap/cli
+      - name: Install required Android SDK packages
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Configure Bubblewrap to use the runner's installed Android tools
         run: |
@@ -47,6 +50,9 @@ jobs:
           printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
           cat "$HOME/.bubblewrap/config.json"
           ls -l "$ANDROID_HOME/tools/bin/sdkmanager"
+
+      - name: Install Bubblewrap
+        run: npm install --global @bubblewrap/cli
 
       - name: Generate Android project files from the saved TWA configuration
         working-directory: android-app
