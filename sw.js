@@ -12,6 +12,7 @@ const CORE_ASSETS = [
   "/style.css",
   "/site.js",
   "/image-14.jpg",
+  "/app-icon.svg",
   "/offline.html"
 ];
 
