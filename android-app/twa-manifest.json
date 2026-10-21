@@ -41,7 +41,7 @@
   "webManifestUrl": "https://mocypg.vercel.app/manifest.webmanifest",
   "fallbackType": "customtabs",
   "enableSiteSettingsShortcut": true,
-  "minSdkVersion": 23,
+  "minSdkVersion": 24,
   "fingerprints": [],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
