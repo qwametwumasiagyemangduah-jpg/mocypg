@@ -22,8 +22,8 @@
     "path": "./moc-ypg.keystore",
     "alias": "mocypg"
   },
-  "appVersionCode": 1,
-  "appVersion": "1.0.0",
+  "appVersionCode": 2,
+  "appVersion": "1.0.1",
   "shortcuts": [
     {
       "name": "Newsroom",
@@ -41,7 +41,7 @@
   "webManifestUrl": "https://mocypg.vercel.app/manifest.webmanifest",
   "fallbackType": "customtabs",
   "enableSiteSettingsShortcut": true,
-  "minSdkVersion": 24,
+  "minSdkVersion": 23,
   "fingerprints": [],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
