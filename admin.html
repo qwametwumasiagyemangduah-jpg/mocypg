@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ministry Admin | Youth Parliament Ghana</title>
+<style>
+:root{--navy:#071b3a;--gold:#d8ad53;--paper:#f4f6fa;--ink:#15233b;--muted:#718096;--line:#e4e9f1;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--paper);color:var(--ink)}button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:11px 15px;font-weight:700}.primary{background:var(--navy);color:#fff}.gold{background:var(--gold);color:var(--navy)}.quiet{background:#edf1f7;color:var(--navy)}.danger{background:#fff0f0;color:#a72c2c}
+.shell{min-height:100vh;display:grid;grid-template-columns:245px 1fr}.side{background:var(--navy);color:#fff;padding:26px 18px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;line-height:1.3}.brand img{width:44px;height:44px;object-fit:contain;background:white;border-radius:10px;padding:4px}.brand small{display:block;font-size:11px;font-weight:500;color:#c7d2e4;margin-top:4px}.nav{display:grid;gap:8px}.nav button{color:#dbe4f2;background:transparent;text-align:left}.nav button.active,.nav button:hover{background:#18345b;color:#fff}.side-note{margin-top:auto;font-size:12px;color:#aab9d0;line-height:1.6}.main{min-width:0}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 30px;background:#fff;border-bottom:1px solid var(--line)}.topbar h1{font-size:22px;margin:0}.topbar p{margin:5px 0 0;color:var(--muted);font-size:13px}.content{padding:28px;max-width:1250px;margin:auto}.notice{padding:13px 15px;border-radius:10px;margin-bottom:18px;background:#fff7df;color:#6b5015;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 3px 14px #12203b08}.metric span{font-size:13px;color:var(--muted)}.metric strong{display:block;font-size:30px;margin-top:9px}.section{margin-top:22px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.section-head h2{margin:0;font-size:18px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:7px;margin-bottom:13px}.field label{font-size:12px;font-weight:800;color:#526178}.field input,.field textarea{width:100%;border:1px solid #dbe2ec;border-radius:9px;padding:12px;background:#fff;color:var(--ink)}.field textarea{min-height:130px;resize:vertical}.field.full{grid-column:1/-1}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:700}td .muted{display:block;color:var(--muted);font-size:11px;margin-top:4px}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:#e7f7ed;color:#207243;font-size:11px;font-weight:800}.pill.off{background:#fff0dd;color:#865817}.empty{color:var(--muted);padding:24px;text-align:center}.hidden{display:none!important}.loginwrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(140deg,#071b3a,#163963)}.login{width:min(420px,100%);background:white;padding:30px;border-radius:18px}.login h1{font-size:24px;margin:20px 0 7px}.login p{color:var(--muted);font-size:14px;line-height:1.5}.error{color:#a72c2c;font-size:13px;white-space:pre-wrap}.success{color:#207243;font-size:13px}.mobilemenu{display:none}
+@media(max-width:800px){.shell{grid-template-columns:1fr}.side{padding:12px 16px;gap:12px}.side .nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 11px}.side-note{display:none}.topbar{padding:18px}.content{padding:16px}.grid{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.brand img{width:36px;height:36px}}
+</style>
+</head>
+<body>
+<div id="loginView" class="loginwrap">
+  <form id="loginForm" class="login">
+    <div class="brand"><img src="image-14.jpg" alt=""><div style="color:var(--navy)">Youth Parliament Ghana<small style="color:var(--muted)">Ministry Admin Portal</small></div></div>
+    <h1>Administrator sign in</h1><p>Sign in with an authorised Supabase account to manage ministry announcements and view contact messages.</p>
+    <div class="field"><label for="email">EMAIL ADDRESS</label><input id="email" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="password">PASSWORD</label><input id="password" type="password" autocomplete="current-password" required></div>
+    <button class="primary" style="width:100%" type="submit">Sign in securely</button><p id="loginError" class="error"></p>
+    <p style="font-size:11px">Access is restricted to accounts authorised in Supabase. Public visitors cannot sign in unless an account is created and approved.</p>
+  </form>
+</div>
+<div id="appView" class="shell hidden">
+  <aside class="side">
+    <div class="brand"><img src="image-14.jpg" alt=""><div>Youth Parliament Ghana<small>Ministry Admin</small></div></div>
+    <nav class="nav">
+      <button class="active" data-page="overview">▦ &nbsp; Overview</button>
+      <button data-page="announcements">▤ &nbsp; Announcements</button>
+      <button data-page="messages">✉ &nbsp; Contact messages</button>
+    </nav>
+    <div class="side-note">Communications, Digital Technology &amp; Innovations<br>Admin access only · Keep your password private.</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><h1 id="pageTitle">Dashboard overview</h1><p>Manage ministry updates from one place.</p></div><div class="row"><a href="index.html" style="font-size:13px;color:var(--navy);font-weight:700;text-decoration:none">View website ↗</a><button id="signOut" class="quiet">Sign out</button></div></header>
+    <div class="content">
+      <div id="globalNotice" class="notice">Connect this page to your Supabase project to load live records.</div>
+      <section id="page-overview">
+        <div class="grid">
+          <div class="card metric"><span>Announcements</span><strong id="announcementCount">—</strong></div>
+          <div class="card metric"><span>Contact messages</span><strong id="messageCount">—</strong></div>
+          <div class="card metric"><span>Signed in as</span><strong id="userEmail" style="font-size:16px;overflow-wrap:anywhere">—</strong></div>
+        </div>
+        <div class="card section"><div class="section-head"><h2>Quick actions</h2></div><p style="color:var(--muted);font-size:14px;line-height:1.7">Publish official updates in Announcements. Contact messages are private and should be handled responsibly. Changes only reach the public website after the website's Newsroom page is connected to the announcements table.</p><div class="row"><button class="gold" data-goto="announcements">＋ Create announcement</button><button class="quiet" data-goto="messages">View messages</button></div></div>
+      </section>
+      <section id="page-announcements" class="hidden">
+        <div class="card">
+          <div class="section-head"><h2 id="editorTitle">Create announcement</h2><button id="resetEditor" class="quiet">Clear form</button></div>
+          <form id="announcementForm">
+            <input id="recordId" type="hidden">
+            <div class="field"><label for="announcementTitle">TITLE</label><input id="announcementTitle" maxlength="180" required placeholder="Announcement headline"></div>
+            <div class="field"><label for="announcementContent">CONTENT</label><textarea id="announcementContent" required placeholder="Write the official announcement..."></textarea></div>
+            <div class="row" style="justify-content:space-between"><label style="font-size:13px"><input id="isPublished" type="checkbox" checked> Publish announcement</label><button class="primary" type="submit">Save announcement</button></div>
+            <p id="announcementFeedback" class="error"></p>
+          </form>
+        </div>
+        <div class="card section"><div class="section-head"><h2>Existing announcements</h2><button id="refreshAnnouncements" class="quiet">Refresh</button></div><div id="announcementsTable" class="tablewrap"><div class="empty">Sign in and refresh to load announcements.</div></div></div>
+      </section>
+      <section id="page-messages" class="hidden">
+        <div class="card"><div class="section-head"><h2>Contact messages</h2><button id="refreshMessages" class="quiet">Refresh</button></div><p style="color:var(--muted);font-size:13px">Messages may contain personal information. Only authorised staff should access them.</p><div id="messagesTable" class="tablewrap"><div class="empty">Sign in and refresh to load messages.</div></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* Replace these two placeholders with the project's PUBLIC URL and anon/publishable key.
+   Never put a service_role or secret key in browser code. */
+const SUPABASE_URL = "https://ktkaxdkgdtjroeoypcwv.supabase.co";
+const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY_HERE";
+const configured = SUPABASE_ANON_KEY !== "PASTE_YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY_HERE";
+let sb = null, currentUser = null, announcements = [];
+const $ = id => document.getElementById(id);
+function notice(message, error=false){$('globalNotice').textContent=message;$('globalNotice').style.background=error?'#fff0f0':'#fff7df';$('globalNotice').style.color=error?'#a72c2c':'#6b5015';}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function showApp(user){currentUser=user;$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');$('userEmail').textContent=user.email||'Authorised user';}
+function showLogin(){$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');}
+function go(page){document.querySelectorAll('[id^="page-"]').forEach(x=>x.classList.add('hidden'));$('page-'+page).classList.remove('hidden');document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('pageTitle').textContent=({overview:'Dashboard overview',announcements:'Announcements',messages:'Contact messages'})[page];if(page==='announcements')loadAnnouncements();if(page==='messages')loadMessages();}
+async function loadAnnouncements(){
+ if(!sb)return;const box=$('announcementsTable');box.innerHTML='<div class="empty">Loading…</div>';
+ const {data,error}=await sb.from('announcements').select('*').order('created_at',{ascending:false}).limit(100);
+ if(error){box.innerHTML='<p class="error">'+esc(error.message)+'</p>';notice('Could not load announcements. Check table columns and Row Level Security policies.',true);return;}
+ announcements=data||[];$('announcementCount').textContent=announcements.length;
+ if(!announcements.length){box.innerHTML='<div class="empty">No announcements found.</div>';return;}
+ box.innerHTML='<table><thead><tr><th>Announcement</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody>'+announcements.map(a=>'<tr><td><strong>'+esc(a.title||'Untitled')+'</strong><span class="muted">'+esc((a.content||a.body||'').slice(0,100))+'</span></td><td><span class="pill '+((a.published===false||a.is_published===false)?'off':'')+'">'+((a.published===false||a.is_published===false)?'Draft':'Published')+'</span></td><td>'+esc(a.created_at?new Date(a.created_at).toLocaleDateString():'—')+'</td><td><div class="row"><button class="quiet" data-edit="'+esc(a.id)+'">Edit</button><button class="danger" data-delete="'+esc(a.id)+'">Delete</button></div></td></tr>').join('')+'</tbody></table>';
+ box.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editAnnouncement(b.dataset.edit));box.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteAnnouncement(b.dataset.delete));
+}
+function editAnnouncement(id){const a=announcements.find(x=>String(x.id)===String(id));if(!a)return;$('recordId').value=a.id;$('announcementTitle').value=a.title||'';$('announcementContent').value=a.content||a.body||'';$('isPublished').checked=!(a.published===false||a.is_published===false);$('editorTitle').textContent='Edit announcement';window.scrollTo({top:0,behavior:'smooth'});}
+function resetEditor(){$('recordId').value='';$('announcementForm').reset();$('isPublished').checked=true;$('editorTitle').textContent='Create announcement';$('announcementFeedback').textContent='';}
+async function saveAnnouncement(e){e.preventDefault();$('announcementFeedback').textContent='Saving…';const id=$('recordId').value;const payload={title:$('announcementTitle').value.trim(),content:$('announcementContent').value.trim(),published:$('isPublished').checked};
+ let result;
+ if(id) result=await sb.from('announcements').update(payload).eq('id',id);
+ else result=await sb.from('announcements').insert(payload);
+ if(result.error){$('announcementFeedback').textContent=result.error.message;return;}
+ $('announcementFeedback').className='success';$('announcementFeedback').textContent='Saved successfully.';resetEditor();await loadAnnouncements();notice('Announcement saved. Confirm the public Newsroom is connected to this table before assuming it is visible on the website.');
+}
+async function deleteAnnouncement(id){if(!confirm('Delete this announcement permanently?'))return;const {error}=await sb.from('announcements').delete().eq('id',id);if(error){notice('Delete failed: '+error.message,true);return;}await loadAnnouncements();notice('Announcement deleted.');}
+async function loadMessages(){if(!sb)return;const box=$('messagesTable');box.innerHTML='<div class="empty">Loading…</div>';const {data,error}=await sb.from('contact_messages').select('*').order('created_at',{ascending:false}).limit(100);if(error){box.innerHTML='<p class="error">'+esc(error.message)+'</p>';notice('Could not load messages. Check the contact_messages schema and administrator-only policies.',true);return;}const rows=data||[];$('messageCount').textContent=rows.length;if(!rows.length){box.innerHTML='<div class="empty">No messages found.</div>';return;}box.innerHTML='<table><thead><tr><th>Sender</th><th>Message</th><th>Received</th></tr></thead><tbody>'+rows.map(m=>'<tr><td><strong>'+esc(m.name||m.full_name||'Unknown sender')+'</strong><span class="muted">'+esc(m.email||'No email provided')+'</span></td><td>'+esc(m.message||m.content||m.subject||'—')+'</td><td>'+esc(m.created_at?new Date(m.created_at).toLocaleString():'—')+'</td></tr>').join('')+'</tbody></table>';}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginError').textContent='';if(!configured){$('loginError').textContent='Setup required: add your Supabase anon/publishable key in admin.html first.';return;}const {data,error}=await sb.auth.signInWithPassword({email:$('email').value,password:$('password').value});if(error){$('loginError').textContent=error.message;return;}showApp(data.user);notice('Signed in. Loading dashboard data…');await Promise.all([loadAnnouncements(),loadMessages()]);});
+$('signOut').onclick=async()=>{if(sb)await sb.auth.signOut();currentUser=null;showLogin();};
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>go(b.dataset.goto));
+$('announcementForm').addEventListener('submit',saveAnnouncement);$('resetEditor').onclick=resetEditor;$('refreshAnnouncements').onclick=loadAnnouncements;$('refreshMessages').onclick=loadMessages;
+if(configured){sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});sb.auth.getSession().then(async({data})=>{if(data.session){showApp(data.session.user);await Promise.all([loadAnnouncements(),loadMessages()]);notice('Connected to Supabase.');}else showLogin();});sb.auth.onAuthStateChange((_event,session)=>{if(!session)showLogin();});}
+else notice('Setup required: paste your Supabase anon/publishable key into admin.html, then apply the secure SQL setup before using this dashboard.');
+</script>
+</body></html>
