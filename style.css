@@ -498,3 +498,15 @@ a,button {touch-action:manipulation}
   .hero {padding-left:20px;padding-right:20px}
   .section,.page-hero {padding-left:20px;padding-right:20px}
 }
+
+
+/* Click-to-view image lightbox */
+img.image-viewable{cursor:zoom-in}
+img.image-viewable:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.image-viewer[hidden]{display:none}
+.image-viewer{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:64px 18px 24px;background:rgba(3,10,23,.92);backdrop-filter:blur(8px)}
+.image-viewer-full{display:block;max-width:min(100%,1100px);max-height:calc(100vh - 125px);width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 18px 60px #0008}
+.image-viewer-caption{margin:0;color:#fff;text-align:center;font-size:13px;max-width:90%;line-height:1.5}
+.image-viewer-close{position:absolute;top:16px;right:18px;width:44px;height:44px;border:1px solid #ffffff60;border-radius:50%;background:#ffffff12;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.image-viewer-close:hover{background:#ffffff25}
+.image-viewer-open{overflow:hidden}
