@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     toast.className = 'welcome-toast';
     toast.setAttribute('role', 'status');
     toast.setAttribute('aria-live', 'polite');
-    toast.innerHTML = '<span class="welcome-toast-mark" aria-hidden="true">✦</span><span class="welcome-toast-copy"><strong>' + greetingText + '!</strong><small>Welcome to the Youth Parliament Ghana Ministry website.</small></span><button class="welcome-toast-close" type="button" aria-label="Dismiss welcome message">×</button>';
+    toast.innerHTML = '<span class="welcome-toast-copy"><strong>' + greetingText + '!</strong><small>Welcome to the Youth Parliament Ghana Ministry website.</small></span><button class="welcome-toast-close" type="button" aria-label="Dismiss welcome message">×</button>';
     document.body.appendChild(toast);
     const dismiss = () => {
       toast.classList.add('welcome-toast-hide');
