@@ -677,3 +677,27 @@ main{min-width:0}
  html{scroll-behavior:auto}
  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+
+/* Brand refinement: navy blue, deep red and gold */
+:root{--red:#a91f32;--red-dark:#841729;--red-soft:#f8ecee}
+.top nav a:hover,.top nav a.active{color:var(--red);border-color:var(--red)}
+.btn:not(.gold):hover{background:var(--red);border-color:var(--red);color:#fff}
+.btn.gold{box-shadow:inset 3px 0 0 var(--red)}
+.hero:after{background:linear-gradient(90deg,var(--red) 0%,var(--gold) 24%,#ffffff00 50%,var(--gold) 76%,var(--red) 100%)}
+.hero-note span{background:var(--red);box-shadow:0 0 0 3px #a91f3226}
+.page-hero{border-bottom:4px solid var(--red)}
+.section-head:after{border-color:var(--red)}
+.textlink{color:var(--red)}
+.textlink:hover{color:var(--red-dark)}
+.news-feature-label{background:var(--red-soft);color:var(--red-dark);border-left:3px solid var(--red)}
+.news-contact{border-left-color:var(--red)}
+.news-tags{color:var(--red-dark)}
+.publication-notice{border-top-color:var(--red)}
+.publication-notice-mark{border-color:#a91f324d;color:var(--red)}
+.publication-categories article>span{color:var(--red)}
+.publication-categories small{background:var(--red-soft);color:var(--red-dark)}
+.welcome-toast-mark{background:#a91f321c;border-color:#a91f3280;color:#f1b6bf}
+.welcome-toast-copy strong{color:#f1b6bf}
+:where(a,button):focus-visible{outline-color:var(--red)}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}}
