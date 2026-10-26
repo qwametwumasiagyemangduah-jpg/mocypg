@@ -701,3 +701,30 @@ main{min-width:0}
 .welcome-toast-copy strong{color:#f1b6bf}
 :where(a,button):focus-visible{outline-color:var(--red)}
 @media(prefers-reduced-motion:reduce){.btn{transition:none}}
+
+
+/* Stronger, restrained institutional red treatment */
+:root{--red:#a51d32;--red-dark:#781426;--red-soft:#f7e9ec}
+body:before{content:"";display:block;height:5px;background:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 48%,var(--gold) 100%)}
+.top{border-bottom:2px solid #a51d3226}
+.top nav a:hover,.top nav a.active{color:var(--red-dark);border-bottom:3px solid var(--red);padding-bottom:8px}
+.btn:not(.gold){background:var(--red);border:1px solid var(--red);color:#fff}
+.btn:not(.gold):hover{background:var(--red-dark);border-color:var(--red-dark);color:#fff}
+.btn.gold{background:var(--gold);color:#14213a;border-left:4px solid var(--red)}
+.hero{box-shadow:inset 6px 0 0 var(--red-dark)}
+.hero:after{height:6px;background:linear-gradient(90deg,var(--red-dark) 0%,var(--red) 28%,var(--gold) 72%,var(--red-dark) 100%)}
+.hero .eyebrow,.page-hero .eyebrow{position:relative;padding-left:13px}
+.hero .eyebrow:before,.page-hero .eyebrow:before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:4px;border-radius:1px;background:var(--red)}
+.page-hero{border-bottom:5px solid var(--red)}
+.textlink{color:var(--red-dark);font-weight:700;text-decoration-thickness:1px;text-underline-offset:4px}
+.textlink:hover{color:var(--red);text-decoration:underline}
+.news-feature-label{background:var(--red);color:#fff;border-left:4px solid var(--gold)}
+.news-contact{background:#fbf4f5;border-left:4px solid var(--red)}
+.publication-notice{border-top:5px solid var(--red)}
+.publication-notice-mark{background:var(--red-soft);border:1px solid #a51d3259;color:var(--red-dark)}
+.publication-categories article>span{color:var(--red-dark)}
+.publication-categories small{background:var(--red-soft);color:var(--red-dark);border-left:2px solid var(--red)}
+.welcome-toast-mark{background:var(--red);border-color:var(--gold);color:#fff}
+.welcome-toast-copy strong{color:#fff}
+.welcome-toast{border-top:3px solid var(--red)}
+:where(a,button):focus-visible{outline:3px solid var(--red);outline-offset:3px}
