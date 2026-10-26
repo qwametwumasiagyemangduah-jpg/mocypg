@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
-  // Time-aware welcome toast for visitors, using Ghana local time.
+  // Show the time-aware welcome toast on the homepage only.
+  if (location.pathname === '/' || location.pathname.endsWith('/index.html')) {
   try {
     const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Accra' }));
     const hour = now.getHours();
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     window.setTimeout(() => toast.classList.add('welcome-toast-visible'), 120);
     window.setTimeout(dismiss, 6500);
   } catch (error) { /* A welcome message should never block the website. */ }
+  }
 
   const b=document.querySelector('.menu'),n=document.querySelector('.top nav');
   if(b&&n)b.addEventListener('click',()=>{
