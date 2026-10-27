@@ -815,3 +815,14 @@ footer a:focus-visible,.top nav a:focus-visible{border-radius:3px}
 .back-to-top:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 @media(max-width:480px){.back-to-top{right:12px;bottom:12px;width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
+
+/* Contact page: clear community path without inventing a contact form */
+.contact-community-link{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:22px 0;padding:18px 20px;border:1px solid #dce2e8;border-left:4px solid var(--gold);background:#fff;color:var(--navy);text-decoration:none;transition:border-color .2s ease,box-shadow .2s ease}
+.contact-community-link:hover{border-color:var(--gold);box-shadow:0 12px 28px #07172f10}
+.contact-community-link strong,.contact-community-link small{display:block}
+.contact-community-link strong{font-size:14px;line-height:1.5}
+.contact-community-link small{margin-top:4px;color:#5d6877;font-size:12px;line-height:1.5}
+.contact-community-link>b{font-size:20px;color:var(--red);flex:0 0 auto}
+.contact-community-link:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media(max-width:480px){.contact-community-link{padding:15px;gap:12px}}
+@media(prefers-reduced-motion:reduce){.contact-community-link{transition:none}}
