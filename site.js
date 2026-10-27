@@ -161,4 +161,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     leadershipSearch.addEventListener('search', applyLeadershipFilter);
     applyLeadershipFilter();
   }
+
+  const contactForm = document.getElementById('contact-email-form');
+  if (contactForm) contactForm.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!contactForm.reportValidity()) return;
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const topic = document.getElementById('contact-topic').value;
+    const message = document.getElementById('contact-message').value.trim();
+    document.getElementById('contact-form-status').textContent = 'Opening your email app. Review the message and send it from there.';
+    const body = 'Name: ' + name + (email ? '\\nEmail: ' + email : '') + '\\n\\n' + message;
+    window.location.href = 'mailto:?subject=' + encodeURIComponent('[Ministry Enquiry] ' + topic) + '&body=' + encodeURIComponent(body);
+  });
 });
