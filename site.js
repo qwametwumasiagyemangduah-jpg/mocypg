@@ -102,4 +102,36 @@ document.addEventListener('DOMContentLoaded',()=>{
   if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
     window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch((error)=>console.warn('Service worker registration failed:',error)));
   }
+
+  // Make mobile navigation easier to use and close it after choosing a destination.
+  if (n && b) {
+    n.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      n.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+      b.textContent = '☰';
+    }));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && n.classList.contains('open')) {
+        n.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        b.textContent = '☰';
+        b.focus();
+      }
+    });
+  }
+
+  // Add a compact back-to-top control on long pages.
+  if (!document.querySelector('.back-to-top')) {
+    const topButton = document.createElement('button');
+    topButton.className = 'back-to-top';
+    topButton.type = 'button';
+    topButton.textContent = '↑';
+    topButton.setAttribute('aria-label', 'Back to top');
+    topButton.title = 'Back to top';
+    document.body.appendChild(topButton);
+    const updateTopButton = () => topButton.classList.toggle('back-to-top-visible', window.scrollY > 500);
+    window.addEventListener('scroll', updateTopButton, { passive: true });
+    updateTopButton();
+    topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+  }
 });
