@@ -826,3 +826,12 @@ footer a:focus-visible,.top nav a:focus-visible{border-radius:3px}
 .contact-community-link:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 @media(max-width:480px){.contact-community-link{padding:15px;gap:12px}}
 @media(prefers-reduced-motion:reduce){.contact-community-link{transition:none}}
+
+/* Leadership directory search */
+.directory-tools{max-width:620px;margin:0 0 34px;padding:20px 22px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold)}
+.directory-tools label{display:block;margin-bottom:8px;color:var(--navy);font-size:13px;font-weight:700}
+.directory-tools input{display:block;width:100%;min-height:48px;padding:12px 14px;border:1px solid #cbd2dc;border-radius:3px;background:#fff;color:var(--ink);font:inherit;font-size:14px}
+.directory-tools input:focus-visible{outline:3px solid #d9b56d;outline-offset:2px;border-color:var(--navy)}
+.directory-search-status{margin:8px 0 0;color:var(--muted);font-size:12px}
+.person[hidden]{display:none!important}
+@media(max-width:480px){.directory-tools{padding:16px;margin-bottom:26px}}
