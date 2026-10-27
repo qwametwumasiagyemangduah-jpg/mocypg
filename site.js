@@ -134,4 +134,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     updateTopButton();
     topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
   }
+
+  // Filter leadership profiles by name, title or directorate.
+  const leadershipSearch = document.querySelector('#leadership-search');
+  const leadershipResults = document.querySelector('#leadership-directory-results');
+  const leadershipStatus = document.querySelector('#leadership-search-status');
+  if (leadershipSearch && leadershipResults && leadershipStatus) {
+    const profiles = Array.from(leadershipResults.querySelectorAll('.person'));
+    leadershipSearch.addEventListener('input', () => {
+      const query = leadershipSearch.value.trim().toLocaleLowerCase();
+      let visible = 0;
+      profiles.forEach(profile => {
+        const matches = profile.textContent.toLocaleLowerCase().includes(query);
+        profile.hidden = !matches;
+        if (matches) visible++;
+      });
+      leadershipStatus.textContent = query
+        ? (visible === 1 ? '1 leadership profile found.' : visible + ' leadership profiles found.')
+        : 'Showing all leadership profiles.';
+    });
+  }
 });
