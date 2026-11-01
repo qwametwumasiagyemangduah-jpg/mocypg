@@ -848,3 +848,34 @@ footer a:focus-visible,.top nav a:focus-visible{border-radius:3px}
 #contact-email-form button{justify-self:start;margin-top:8px}
 .contact-form-note{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.6}
 @media(max-width:480px){.contact-message-panel{padding:18px;margin-top:18px}.contact-message-panel h3{font-size:22px}}
+
+
+/* Official colour correction: navy blue, gold and white; no red accents. */
+:root{--red:#07172f;--red-dark:#07172f;--red-soft:#eee5d2}
+body:before{background:linear-gradient(90deg,#07172f 0%,#d9b56d 50%,#07172f 100%)!important}
+.top{border-bottom:1px solid #e8ebef!important}
+.top nav a:hover,.top nav a.active{color:#9b742f!important;border-bottom-color:#d9b56d!important}
+.btn:not(.gold){background:#07172f!important;border-color:#07172f!important;color:#fff!important}
+.btn:not(.gold):hover{background:#123d70!important;border-color:#123d70!important}
+.btn.gold{border-left:0!important;box-shadow:none!important}
+.hero{box-shadow:none!important}
+.hero:after{background:linear-gradient(90deg,#d9b56d,#fff0,#d9b56d)!important}
+.hero .eyebrow:before,.page-hero .eyebrow:before{background:#d9b56d!important}
+.page-hero{border-bottom:3px solid #d9b56d!important}
+.textlink,.textlink:hover{color:#123d70!important}
+.news-feature-label{background:#eee5d2!important;color:#07172f!important;border-left-color:#d9b56d!important}
+.news-contact{background:#f4f3ef!important;border-left-color:#d9b56d!important}
+.publication-notice{border-top-color:#d9b56d!important}
+.publication-notice-mark{background:#eee5d2!important;border-color:#d9b56d!important;color:#07172f!important}
+.publication-categories article>span{color:#07172f!important}
+.publication-categories small{background:#eee5d2!important;color:#07172f!important;border-left-color:#d9b56d!important}
+.welcome-toast{border-top:3px solid #d9b56d!important}
+.welcome-toast-mark{background:#d9b56d!important;border-color:#d9b56d!important;color:#07172f!important}
+.welcome-toast-copy strong{color:#e6c783!important}
+:where(a,button):focus-visible{outline-color:#d9b56d!important}
+.install-app{background:#07172f!important;border-color:#d9b56d!important;color:#fff!important}
+.install-app:hover{background:#123d70!important}
+.image-viewable:focus-visible{outline-color:#d9b56d!important}
+.back-to-top{background:#07172f!important;border-color:#d9b56d!important}
+.contact-community-link>b{color:#9b742f!important}
+.contact-community-link:focus-visible{outline-color:#d9b56d!important}
