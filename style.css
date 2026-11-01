@@ -900,42 +900,46 @@ body:before{background:linear-gradient(90deg,#07172f 0%,#d9b56d 50%,#07172f 100%
 }
 
 
-/* Ghana national colours — restrained accents across key site areas */
+/* Ghana national colours — refined national identity accents */
 :root{
   --ghana-red:#ce1126;
   --ghana-gold:#fcd116;
   --ghana-green:#006b3f;
-  --ghana-black:#000000;
 }
-/* Slim national-colour ribbon at the very top */
+/* A slim flag-colour ribbon, not a competing page header */
 body:before{
+  height:4px!important;
+  background:linear-gradient(90deg,
+    var(--ghana-red) 0 33.333%,
+    var(--ghana-gold) 33.333% 66.666%,
+    var(--ghana-green) 66.666% 100%)!important;
+}
+/* Keep the ministry's navy identity; use national colours as fine details */
+.top{
+  border-bottom:2px solid transparent!important;
+  border-image:linear-gradient(90deg,var(--ghana-red),var(--ghana-gold),var(--ghana-green)) 1!important;
+}
+.top nav a:hover,.top nav a.active{
+  color:var(--ghana-green)!important;
+  border-bottom-color:var(--ghana-gold)!important;
+}
+.hero:after{
   height:5px!important;
   background:linear-gradient(90deg,
     var(--ghana-red) 0 33.333%,
     var(--ghana-gold) 33.333% 66.666%,
     var(--ghana-green) 66.666% 100%)!important;
 }
-/* Header and page transitions */
-.top{border-bottom:3px solid transparent!important;
-  border-image:linear-gradient(90deg,var(--ghana-red),var(--ghana-gold),var(--ghana-green)) 1!important;}
-.top nav a:hover,.top nav a.active{
-  color:var(--ghana-green)!important;
-  border-bottom-color:var(--ghana-gold)!important;
+.page-hero{border-bottom:3px solid var(--ghana-green)!important}
+.page-hero .eyebrow:before{background:var(--ghana-red)!important}
+.ticker{border-top:2px solid var(--ghana-gold)}
+.ticker span+span:before{background:var(--ghana-green)!important}
+.callout{border-top:3px solid var(--ghana-gold)}
+.publication-notice{border-top-color:var(--ghana-green)!important}
+.news-feature-label{border-left-color:var(--ghana-gold)!important}
+footer{
+  border-top:4px solid transparent;
+  border-image:linear-gradient(90deg,var(--ghana-red),var(--ghana-gold),var(--ghana-green)) 1;
 }
-/* Ghana-colour detail along hero panels */
-.hero:after{
-  height:5px!important;
-  background:linear-gradient(90deg,var(--ghana-red) 0 33.333%,var(--ghana-gold) 33.333% 66.666%,var(--ghana-green) 66.666% 100%)!important;
-}
-.page-hero{border-bottom:4px solid var(--ghana-green)!important;}
-.page-hero .eyebrow:before{background:var(--ghana-red)!important;}
-/* Small accents in content, calls to action and footer */
-.ticker{border-top:2px solid var(--ghana-gold);}
-.ticker span+span:before{background:var(--ghana-green)!important;}
-.callout{border-top:3px solid var(--ghana-gold);}
-.publication-notice{border-top-color:var(--ghana-green)!important;}
-.news-feature-label{border-left-color:var(--ghana-gold)!important;}
-footer{border-top:4px solid transparent;
-  border-image:linear-gradient(90deg,var(--ghana-red),var(--ghana-gold),var(--ghana-green)) 1;}
-.contact-community-link{border-left-color:var(--ghana-green)!important;}
-:where(a,button):focus-visible{outline-color:var(--ghana-green)!important;}
+.contact-community-link{border-left-color:var(--ghana-green)!important}
+:where(a,button):focus-visible{outline-color:var(--ghana-green)!important}
