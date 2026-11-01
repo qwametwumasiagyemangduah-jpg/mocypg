@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
   // Time-aware welcome toast: homepage only, using Ghana local time.
-  const pagePath = window.location.pathname.replace(/\\/+$/, '') || '/';
+  const pagePath = window.location.pathname.replace(/\/+$/, '') || '/';
   if (pagePath === '/' || pagePath === '/index.html') {
     try {
       const parts = new Intl.DateTimeFormat('en-GB', {
