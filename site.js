@@ -1,28 +1,50 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
-  // Show the time-aware welcome toast on the homepage only.
-  if (location.pathname === '/' || location.pathname.endsWith('/index.html')) {
-  try {
-    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Accra' }));
-    const hour = now.getHours();
-    const greetingText = hour >= 5 && hour < 12 ? 'Good morning'
-      : hour >= 12 && hour < 17 ? 'Good afternoon'
-      : hour >= 17 && hour < 21 ? 'Good evening'
-      : 'Welcome';
-    const toast = document.createElement('aside');
-    toast.className = 'welcome-toast';
-    toast.setAttribute('role', 'status');
-    toast.setAttribute('aria-live', 'polite');
-    toast.innerHTML = '<span class="welcome-toast-copy"><strong>' + greetingText + '!</strong><small>Welcome to the Youth Parliament Ghana Ministry website.</small></span><button class="welcome-toast-close" type="button" aria-label="Dismiss welcome message">×</button>';
-    document.body.appendChild(toast);
-    const dismiss = () => {
-      toast.classList.add('welcome-toast-hide');
-      window.setTimeout(() => toast.remove(), 350);
-    };
-    toast.querySelector('.welcome-toast-close').addEventListener('click', dismiss);
-    window.setTimeout(() => toast.classList.add('welcome-toast-visible'), 120);
-    window.setTimeout(dismiss, 6500);
-  } catch (error) { /* A welcome message should never block the website. */ }
+  // Time-aware welcome toast: homepage only, using Ghana local time.
+  const pagePath = window.location.pathname.replace(/\\/+$/, '') || '/';
+  if (pagePath === '/' || pagePath === '/index.html') {
+    try {
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Africa/Accra',
+        hour: '2-digit',
+        hourCycle: 'h23'
+      }).formatToParts(new Date());
+      const hour = Number(parts.find(part => part.type === 'hour')?.value ?? 0);
+      const greetingText = hour >= 5 && hour < 12 ? 'Good morning'
+        : hour >= 12 && hour < 17 ? 'Good afternoon'
+        : hour >= 17 && hour < 21 ? 'Good evening'
+        : 'Welcome';
+      const toast = document.createElement('aside');
+      toast.className = 'welcome-toast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      const copy = document.createElement('span');
+      copy.className = 'welcome-toast-copy';
+      const heading = document.createElement('strong');
+      heading.textContent = greetingText + '!';
+      const message = document.createElement('small');
+      message.textContent = 'Welcome to the Youth Parliament Ghana Ministry website.';
+      const close = document.createElement('button');
+      close.className = 'welcome-toast-close';
+      close.type = 'button';
+      close.setAttribute('aria-label', 'Dismiss welcome message');
+      close.textContent = '×';
+      copy.append(heading, message);
+      toast.append(copy, close);
+      document.body.appendChild(toast);
+      let dismissed = false;
+      const dismiss = () => {
+        if (dismissed) return;
+        dismissed = true;
+        toast.classList.add('welcome-toast-hide');
+        window.setTimeout(() => toast.remove(), 350);
+      };
+      close.addEventListener('click', dismiss);
+      window.requestAnimationFrame(() => toast.classList.add('welcome-toast-visible'));
+      window.setTimeout(dismiss, 8000);
+    } catch (error) {
+      // The welcome message must never prevent the rest of the site from loading.
+    }
   }
 
   const b=document.querySelector('.menu'),n=document.querySelector('.top nav');
