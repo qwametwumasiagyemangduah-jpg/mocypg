@@ -1,4 +1,4 @@
-const CACHE_NAME = "ypg-ministry-v18";
+const CACHE_NAME = "ypg-ministry-v19";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -7,6 +7,7 @@ const CORE_ASSETS = [
   "/departments.html",
   "/programmes.html",
   "/newsroom.html",
+  "/launch.html",
   "/publications.html",
   "/contact.html",
   "/style.css",
