@@ -1,4 +1,40 @@
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',()=>{\n  // Live countdown to the National Youth Parliament launch and swearing-in (Ghana time).
+  // Run this first so an unrelated page feature cannot leave the placeholder visible.
+  const countdowns = document.querySelectorAll('[data-countdown]');
+  if (countdowns.length) {
+    const updateCountdown = () => {
+      const now = new Date();
+      const ghanaDate = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Africa/Accra', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).format(now);
+      const [year, month, day] = ghanaDate.split('-').map(Number);
+      const today = Date.UTC(year, month - 1, day);
+      countdowns.forEach(item => {
+        const target = item.getAttribute('data-countdown');
+        const match = /^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(target || '');
+        const number = item.querySelector('[data-countdown-days]');
+        const label = item.querySelector('[data-countdown-label]');
+        if (!match || !number || !label) return;
+        const eventDay = Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+        const daysLeft = Math.round((eventDay - today) / 86400000);
+        if (daysLeft > 1) {
+          number.textContent = daysLeft;
+          label.textContent = 'days to go until launch and swearing-in';
+        } else if (daysLeft === 1) {
+          number.textContent = '1';
+          label.textContent = 'day to go until launch and swearing-in';
+        } else if (daysLeft === 0) {
+          number.textContent = 'TODAY';
+          label.textContent = 'The launch and swearing-in take place today';
+        } else {
+          number.textContent = 'COMPLETED';
+          label.textContent = 'The launch and swearing-in date has passed';
+        }
+      });
+    };
+    updateCountdown();
+    window.setInterval(updateCountdown, 60 * 60 * 1000);
+  }
 
   // Time-aware welcome toast: homepage only, using Ghana local time.
   const pagePath = window.location.pathname.replace(/\/+$/, '') || '/';
@@ -184,42 +220,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     applyLeadershipFilter();
   }
 
-  // Live countdown to the National Youth Parliament launch and swearing-in (Ghana time).
-  const countdowns = document.querySelectorAll('[data-countdown="2026-11-27"]');
-  if (countdowns.length) {
-    const updateCountdown = () => {
-      const parts = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Africa/Accra',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      }).formatToParts(new Date());
-      const get = type => Number(parts.find(part => part.type === type)?.value);
-      const today = Date.UTC(get('year'), get('month') - 1, get('day'));
-      const eventDay = Date.UTC(2026, 10, 27);
-      const daysLeft = Math.round((eventDay - today) / 86400000);
-      countdowns.forEach(item => {
-        const number = item.querySelector('[data-countdown-days]');
-        const label = item.querySelector('[data-countdown-label]');
-        if (!number || !label) return;
-        if (daysLeft > 1) {
-          number.textContent = daysLeft;
-          label.textContent = 'days to go until launch and swearing-in';
-        } else if (daysLeft === 1) {
-          number.textContent = '1';
-          label.textContent = 'day to go until launch and swearing-in';
-        } else if (daysLeft === 0) {
-          number.textContent = 'TODAY';
-          label.textContent = 'The launch and swearing-in take place today';
-        } else {
-          number.textContent = 'COMPLETED';
-          label.textContent = 'The launch and swearing-in date has passed';
-        }
-      });
-    };
-    updateCountdown();
-    window.setInterval(updateCountdown, 60 * 60 * 1000);
-  }
+
 
   const contactForm = document.getElementById('contact-email-form');
   if (contactForm) contactForm.addEventListener('submit', event => {
