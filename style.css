@@ -943,3 +943,13 @@ footer{
 }
 .contact-community-link{border-left-color:var(--ghana-green)!important}
 :where(a,button):focus-visible{outline-color:var(--ghana-green)!important}
+
+
+/* National Youth Parliament launch countdown */
+.launch-countdown{display:inline-flex;align-items:center;gap:11px;margin:12px 0 16px;padding:10px 14px;border:1px solid #d9b56d88;border-left:4px solid var(--gold);border-radius:5px;background:linear-gradient(110deg,#f7f2e7,#fff);color:var(--navy);box-shadow:0 7px 18px #07172f0b}
+.countdown-number{display:grid;place-items:center;min-width:48px;min-height:44px;padding:4px 8px;border-radius:3px;background:var(--navy);color:var(--gold);font-family:Manrope,Arial,sans-serif;font-size:25px;font-weight:800;line-height:1}
+.countdown-caption{max-width:210px;font-size:10px;font-weight:700;line-height:1.45;letter-spacing:.04em;text-transform:uppercase}
+.launch-countdown-wide{display:flex;width:fit-content;margin:14px 0 20px;padding:12px 16px}
+.launch-countdown-wide .countdown-number{min-width:58px;min-height:50px;font-size:28px}
+.launch-countdown-wide .countdown-caption{max-width:260px;font-size:11px}
+@media(max-width:480px){.launch-countdown{gap:9px;padding:9px 11px}.countdown-number{min-width:42px;min-height:40px;font-size:22px}.countdown-caption{font-size:9px}.launch-countdown-wide{width:100%}.launch-countdown-wide .countdown-caption{max-width:none}}
