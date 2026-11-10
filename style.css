@@ -953,3 +953,24 @@ footer{
 .launch-countdown-wide .countdown-number{min-width:58px;min-height:50px;font-size:28px}
 .launch-countdown-wide .countdown-caption{max-width:260px;font-size:11px}
 @media(max-width:480px){.launch-countdown{gap:9px;padding:9px 11px}.countdown-number{min-width:42px;min-height:40px;font-size:22px}.countdown-caption{font-size:9px}.launch-countdown-wide{width:100%}.launch-countdown-wide .countdown-caption{max-width:none}}
+
+
+/* Dedicated launch and swearing-in event page */
+.launch-page{max-width:1120px;margin:0 auto}
+.launch-intro{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(24px,4vw,48px);align-items:start}
+.launch-poster{width:100%;height:auto;max-height:650px;object-fit:contain;object-position:top;border:1px solid var(--line);border-radius:6px;background:#f7f7f7;box-shadow:0 12px 30px #07172f12}
+.launch-copy h2{font-size:clamp(27px,3.4vw,40px);line-height:1.18;margin:10px 0 16px;color:var(--navy)}
+.launch-copy p{font-size:14px;line-height:1.9;color:var(--muted)}
+.launch-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+.launch-fact{padding:17px;border:1px solid var(--line);border-top:3px solid var(--gold);background:#fff}
+.launch-fact small{display:block;margin-bottom:6px;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.launch-fact strong{color:var(--navy);font-size:14px;line-height:1.5}
+.launch-programme{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
+.launch-programme article{padding:22px;border:1px solid var(--line);background:#fff}
+.launch-programme article span{display:block;margin-bottom:12px;color:#9b742f;font-size:12px;font-weight:800;letter-spacing:.1em}
+.launch-programme h3{margin:0 0 8px;color:var(--navy);font-size:18px}
+.launch-programme p{margin:0;color:var(--muted);font-size:12px;line-height:1.75}
+.launch-note{margin-top:28px;padding:22px 24px;border-left:4px solid var(--gold);background:#f5f3ed;color:#344158;font-size:13px;line-height:1.8}
+.launch-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+@media(max-width:760px){.launch-intro{grid-template-columns:1fr}.launch-poster{max-height:560px}.launch-programme{grid-template-columns:1fr}}
+@media(max-width:420px){.launch-facts{grid-template-columns:1fr}.launch-note{padding:18px}}
