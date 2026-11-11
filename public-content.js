@@ -1,0 +1,20 @@
+(() => {
+const safeUrl=value=>{try{const u=new URL(value,location.origin);return (u.protocol==="https:"||u.origin===location.origin)?u.href:null;}catch(_){return null;}};
+const el=(tag,text,className)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(className)n.className=className;return n;};
+fetch("/api/public-content").then(r=>r.ok?r.json():null).then(data=>{
+ if(!data)return;
+ const announcements=Array.isArray(data.announcements)?data.announcements:[];
+ const events=Array.isArray(data.events)?data.events:[];
+ const publications=Array.isArray(data.publications)?data.publications:[];
+ const gallery=Array.isArray(data.gallery)?data.gallery:[];
+ const news=document.querySelector(".newsroom-list");
+ if(news)announcements.filter(x=>x&&x.title).forEach(item=>{const article=el("article",null,"news-feature");const label=el("div",item.category||"Ministry announcement","news-feature-label");const h=el("h2",item.title);const meta=el("p",[item.date,item.category].filter(Boolean).join(" · "),"news-meta");const p=el("p",item.description||"");article.append(label,h,meta,p);if(item.url){const a=el("a","Read more ↗");a.href=safeUrl(item.url)||"#";a.rel="noopener noreferrer";article.append(a);}news.append(article);});
+ const eventSection=document.querySelector(".event-calendar");
+ if(eventSection)events.filter(x=>x&&x.title).forEach(item=>{const card=el("article",null,"event-card");const details=el("div",null,"event-details");details.append(el("span","Ministry event","event-status"),el("h2",item.title),el("p",item.category||"","event-venue"),el("p",item.description||""));if(item.url){const a=el("a","More information ↗","textlink");a.href=safeUrl(item.url)||"#";details.append(a);}card.append(details);eventSection.append(card);});
+ const library=document.getElementById("publication-library");
+ if(library)publications.filter(x=>x&&x.title).forEach(item=>{const card=el("article",null,"publication-card");card.dataset.search=[item.title,item.category,item.description].join(" ").toLowerCase();const top=el("div",null,"publication-card-top");top.append(el("span",item.category||"Publication","publication-type"),el("span","Available","publication-status"));card.append(top,el("div","＋","publication-card-icon"),el("h3",item.title),el("p",item.description||""));const meta=el("div",null,"publication-card-meta");meta.append(el("span","Publication date"),el("strong",item.date||"Not specified"));card.append(meta);if(item.url){const a=el("a","Open publication ↗","textlink");a.href=safeUrl(item.url)||"#";a.target="_blank";a.rel="noopener noreferrer";card.append(a);}library.append(card);});
+ const gallerySection=document.querySelector(".gallery-section");
+ if(gallerySection&&gallery.length){const note=gallerySection.querySelector(".gallery-note");if(note&&note.textContent.includes("Gallery updates coming soon"))note.remove();const grid=el("div",null,"admin-gallery-grid");grid.style.cssText="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:25px 0";gallery.filter(x=>x&&x.title&&x.url).forEach(item=>{const src=safeUrl(item.url);if(!src)return;const figure=el("figure");figure.style.cssText="margin:0;background:#fff;padding:10px;border:1px solid #e0e4e9";const img=el("img");img.src=src;img.alt=item.description||item.title;img.loading="lazy";img.style.cssText="width:100%;aspect-ratio:4/3;object-fit:cover";figure.append(img,el("figcaption",item.title));grid.append(figure);});gallerySection.insertBefore(grid,gallerySection.querySelector(".gallery-note")); }
+ const search=document.getElementById("publication-search");if(search&&library)search.addEventListener("input",()=>{const term=search.value.trim().toLowerCase();const cards=[...library.querySelectorAll(".publication-card")];let shown=0;cards.forEach(card=>{const match=(card.dataset.search||"").includes(term)||card.innerText.toLowerCase().includes(term);card.hidden=!match;if(match)shown++;});const status=document.getElementById("publication-search-status");if(status)status.textContent=term?shown+" matching resources.":"Showing "+shown+" available resources.";});
+ }).catch(()=>{});
+})();
