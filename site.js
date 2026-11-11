@@ -197,3 +197,65 @@ document.addEventListener('DOMContentLoaded',()=>{\n  // Time-aware welcome toas
     window.location.href = 'mailto:?subject=' + encodeURIComponent('[Ministry Enquiry] ' + topic) + '&body=' + encodeURIComponent(body);
   });
 });
+
+/* Global site search: indexes the published public pages in the browser. */
+document.addEventListener('DOMContentLoaded',()=>{
+  const pages=[
+    ['Home','index.html'],['About the Ministry','about.html'],['Leadership','leadership.html'],
+    ['Departments','departments.html'],['Programmes','programmes.html'],['Newsroom','newsroom.html'],
+    ['Launch and Swearing-In','launch.html'],['Publications','publications.html'],
+    ['Gallery','gallery.html'],['Digital Citizenship Programme','digital-citizenship.html'],['Contact','contact.html']
+  ];
+  const normalize=s=>(s||'').toLocaleLowerCase().replace(/\s+/g,' ').trim();
+  let indexPromise;
+  const buildIndex=()=>indexPromise||(indexPromise=Promise.all(pages.map(async([label,url])=>{
+    try{
+      const response=await fetch(url,{credentials:'same-origin'});
+      if(!response.ok) return null;
+      const html=await response.text();
+      const doc=new DOMParser().parseFromString(html,'text/html');
+      const main=doc.querySelector('main')||doc.body;
+      main.querySelectorAll('script,style,nav,footer,button,form').forEach(el=>el.remove());
+      const title=doc.querySelector('title')?.textContent.trim()||label;
+      const text=(main.innerText||main.textContent||'').replace(/\s+/g,' ').trim();
+      return {label,url,title,text,haystack:normalize(title+' '+label+' '+text)};
+    }catch(_){return null;}
+  })).then(items=>items.filter(Boolean)));
+  const render=(query,results,status)=>{
+    const q=normalize(query);
+    if(!q){status.textContent='Enter a search term to explore the website.';results.replaceChildren();return;}
+    status.textContent='Searching published ministry pages…';
+    buildIndex().then(index=>{
+      const terms=q.split(' ').filter(Boolean);
+      const matches=index.map(page=>({...page,score:terms.reduce((n,term)=>n+(page.haystack.includes(term)?1:0),0)}))
+        .filter(page=>page.score>0).sort((a,b)=>b.score-a.score);
+      results.replaceChildren();
+      matches.forEach(page=>{
+        const card=document.createElement('a');card.className='site-search-result';card.href=page.url;
+        const label=document.createElement('small');label.textContent=page.label;
+        const title=document.createElement('strong');title.textContent=page.title;
+        const excerpt=document.createElement('p');const first=terms.map(t=>page.text.toLocaleLowerCase().indexOf(t)).filter(i=>i>=0).sort((a,b)=>a-b)[0]||0;
+        excerpt.textContent=(first>90?'…':'')+page.text.slice(Math.max(0,first-70),Math.min(page.text.length,first+220))+(first+220<page.text.length?'…':'');
+        card.append(label,title,excerpt);results.append(card);
+      });
+      status.textContent=matches.length?matches.length+' relevant page'+(matches.length===1?'':'s')+' found.':'No results found. Try a different name or keyword.';
+    }).catch(()=>{status.textContent='Search is temporarily unavailable. Please try again.';});
+  };
+  const form=document.getElementById('site-search-form');
+  if(form){
+    const input=document.getElementById('site-search-input'),results=document.getElementById('site-search-results'),status=document.getElementById('site-search-status');
+    const params=new URLSearchParams(location.search);if(params.has('q')){input.value=params.get('q');render(input.value,results,status);}
+    form.addEventListener('submit',event=>{event.preventDefault();render(input.value,results,status);const url=new URL(location.href);url.searchParams.set('q',input.value.trim());history.replaceState({},'',url);});
+    input.addEventListener('input',()=>{if(!input.value.trim()){results.replaceChildren();status.textContent='Enter a search term to explore the website.';}});
+  }
+  const nav=document.querySelector('.top nav'),header=document.querySelector('.top');
+  if(nav&&!nav.querySelector('a[href="gallery.html"]')){
+    const link=document.createElement('a');link.href='gallery.html';link.textContent='Gallery';
+    const contact=nav.querySelector('a[href="contact.html"]');nav.insertBefore(link,contact||null);
+  }
+  if(header&&!header.querySelector('.site-search-trigger')){
+    const button=document.createElement('button');button.type='button';button.className='site-search-trigger';button.setAttribute('aria-label','Search the ministry website');button.innerHTML='<span aria-hidden="true">⌕</span> Search';
+    button.addEventListener('click',()=>{location.href='search.html';});
+    const menu=header.querySelector('.menu');header.insertBefore(button,menu||nav||null);
+  }
+});
