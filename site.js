@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const text=(main.innerText||main.textContent||'').replace(/\s+/g,' ').trim();
       return {label,url,title,text,haystack:normalize(title+' '+label+' '+text)};
     }catch(_){return null;}
-  }))).then(items=>items.filter(Boolean)));
+  })).then(items=>items.filter(Boolean)));
   const render=(query,results,status)=>{
     const q=normalize(query);
     if(!q){status.textContent='Enter a search term to explore the website.';results.replaceChildren();return;}
