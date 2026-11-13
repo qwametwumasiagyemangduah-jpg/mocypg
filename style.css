@@ -1148,3 +1148,124 @@ footer .social:hover{background:#173b63!important}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation:none!important;transition:none!important}
 }
+
+
+/* Optional dark theme — formal, high-contrast institutional palette. */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --navy:#101d30;
+  --blue:#274b72;
+  --gold:#d2b16f;
+  --paper:#111923;
+  --ink:#e8edf3;
+  --muted:#a8b4c2;
+  --line:#334150;
+  --white:#182330;
+  --soft-gold:#332d21;
+}
+:root[data-theme="dark"] body{background:#111923!important;color:#e8edf3!important}
+:root[data-theme="dark"] .top{background:#131f2d!important;border-color:#344252!important;box-shadow:0 2px 10px #0003!important}
+:root[data-theme="dark"] .brand strong,
+:root[data-theme="dark"] .top nav a,
+:root[data-theme="dark"] .section h2,
+:root[data-theme="dark"] .section h3,
+:root[data-theme="dark"] .resource-links b,
+:root[data-theme="dark"] .quick-access-card strong,
+:root[data-theme="dark"] .person-info h3,
+:root[data-theme="dark"] .contact-message-panel h3,
+:root[data-theme="dark"] .library-toolbar h2,
+:root[data-theme="dark"] .library-categories h2{color:#edf2f7!important}
+:root[data-theme="dark"] .brand span,
+:root[data-theme="dark"] .bodycopy,
+:root[data-theme="dark"] .muted,
+:root[data-theme="dark"] .dept p,
+:root[data-theme="dark"] .values p,
+:root[data-theme="dark"] .resource-links small,
+:root[data-theme="dark"] .resource-list p,
+:root[data-theme="dark"] .publication-card>p,
+:root[data-theme="dark"] .launch-copy p{color:#aeb9c7!important}
+:root[data-theme="dark"] .section,
+:root[data-theme="dark"] .intro,
+:root[data-theme="dark"] .resources,
+:root[data-theme="dark"] .two-col,
+:root[data-theme="dark"] .contact-layout,
+:root[data-theme="dark"] .gallery-section,
+:root[data-theme="dark"] .resource-list,
+:root[data-theme="dark"] .home-updates{background:#111923!important}
+:root[data-theme="dark"] .callout,
+:root[data-theme="dark"] .quick-access,
+:root[data-theme="dark"] .ticker{background:#1a2633!important;color:#dce4ec!important;border-color:#354252!important}
+:root[data-theme="dark"] .page-hero{background:#101d30!important}
+:root[data-theme="dark"] .dark-section{background:#0b1420!important}
+:root[data-theme="dark"] .focus-grid article{background:#121f2d!important;border-color:#354354!important}
+:root[data-theme="dark"] .values article,
+:root[data-theme="dark"] .person,
+:root[data-theme="dark"] .dept,
+:root[data-theme="dark"] .empty-state,
+:root[data-theme="dark"] .resource-list article,
+:root[data-theme="dark"] .resource-links a,
+:root[data-theme="dark"] .quick-access-card,
+:root[data-theme="dark"] .home-update-card,
+:root[data-theme="dark"] .publication-card,
+:root[data-theme="dark"] .publication-library .publication-card,
+:root[data-theme="dark"] .site-search-form,
+:root[data-theme="dark"] .site-search-result,
+:root[data-theme="dark"] .directory-tools,
+:root[data-theme="dark"] .contact-message-panel,
+:root[data-theme="dark"] .launch-fact,
+:root[data-theme="dark"] .launch-programme article,
+:root[data-theme="dark"] .gallery-grid figure,
+:root[data-theme="dark"] .contact-community-link,
+:root[data-theme="dark"] .library-toolbar input,
+:root[data-theme="dark"] .directory-tools input,
+:root[data-theme="dark"] .site-search-form input,
+:root[data-theme="dark"] #contact-email-form input,
+:root[data-theme="dark"] #contact-email-form select,
+:root[data-theme="dark"] #contact-email-form textarea{
+  background:#192634!important;color:#e7edf4!important;border-color:#3a4959!important;
+}
+:root[data-theme="dark"] .portrait,
+:root[data-theme="dark"] .gallery-grid img{background:#263442!important}
+:root[data-theme="dark"] .notice,
+:root[data-theme="dark"] .gallery-note,
+:root[data-theme="dark"] .launch-note,
+:root[data-theme="dark"] .library-empty{background:#202b36!important;color:#e0e7ef!important;border-color:#c6a15b!important}
+:root[data-theme="dark"] .notice p,
+:root[data-theme="dark"] .launch-note,
+:root[data-theme="dark"] .gallery-note p{color:#c0cad5!important}
+:root[data-theme="dark"] .contact-card{background:#0b1420!important}
+:root[data-theme="dark"] .contact-community-link strong,
+:root[data-theme="dark"] .contact-community-link>b{color:#e6c783!important}
+:root[data-theme="dark"] .publication-status{background:#203c31!important;color:#a9dfbd!important}
+:root[data-theme="dark"] .publication-card-icon{background:#263442!important;color:#e1c17e!important}
+:root[data-theme="dark"] .site-search-result small,
+:root[data-theme="dark"] .resource-links a>span,
+:root[data-theme="dark"] .resource-links strong{color:#e1c17e!important}
+:root[data-theme="dark"] .site-search-result p{color:#b5c0cc!important}
+:root[data-theme="dark"] .launch-poster{background:#192634!important;border-color:#3a4959!important}
+:root[data-theme="dark"] .launch-countdown{background:#192634!important;color:#edf2f7!important;border-color:#6f5c39!important}
+:root[data-theme="dark"] .welcome-toast{background:#192634!important;color:#edf2f7!important;border-color:#c6a15b!important}
+:root[data-theme="dark"] .welcome-toast-copy small{color:#b8c3cf!important}
+:root[data-theme="dark"] footer{background:#080f18!important}
+:root[data-theme="dark"] .footlinks a,
+:root[data-theme="dark"] footer p{color:#b0bdca!important}
+:root[data-theme="dark"] .social{border-color:#465363!important}
+:root[data-theme="dark"] .btn.navy,
+:root[data-theme="dark"] .btn:not(.gold){background:#274b72!important;border-color:#45627f!important}
+:root[data-theme="dark"] .btn.gold{background:#d2b16f!important;color:#152235!important}
+:root[data-theme="dark"] .install-app{background:#274b72!important;border-color:#c6a15b!important}
+:root[data-theme="dark"] .site-search-trigger{background:#192634!important;color:#edf2f7!important;border-color:#465363!important}
+:root[data-theme="dark"] .theme-toggle{background:#192634;color:#f2d99e;border-color:#6f5c39}
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;
+  min-height:36px;padding:8px 11px;border:1px solid #dfe4ea;border-radius:2px;
+  background:#fff;color:#102039;font:700 11px Arial,Helvetica,sans-serif;cursor:pointer;
+}
+.theme-toggle:hover{border-color:var(--gold)}
+.theme-toggle:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:680px){
+  .theme-toggle{order:3;padding:8px 9px;font-size:10px}
+  .top .install-app{order:4}
+  .top .menu{order:5}
+  .top nav{order:6}
+}
