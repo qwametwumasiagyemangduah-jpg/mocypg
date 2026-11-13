@@ -261,33 +261,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
-/* Accessible light/dark appearance control, shared across every page. */
-document.addEventListener('DOMContentLoaded',()=>{
-  const header=document.querySelector('.top');
-  if(!header || header.querySelector('.theme-toggle')) return;
-  let saved='light';
-  try{saved=localStorage.getItem('ypg-theme')||'light';}catch(_){}
-  const applyTheme=theme=>{
-    const dark=theme==='dark';
-    document.documentElement.dataset.theme=dark?'dark':'light';
-    const button=header.querySelector('.theme-toggle');
-    if(button){
-      button.textContent=dark?'☀ Light':'☾ Dark';
-      button.setAttribute('aria-label',dark?'Switch to light theme':'Switch to dark theme');
-      button.setAttribute('aria-pressed',String(dark));
-    }
-    const meta=document.querySelector('meta[name="theme-color"]');
-    if(meta)meta.setAttribute('content',dark?'#101820':'#071b3a');
-  };
-  const toggle=document.createElement('button');
-  toggle.type='button';
-  toggle.className='theme-toggle';
-  toggle.addEventListener('click',()=>{
-    const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
-    applyTheme(next);
-    try{localStorage.setItem('ypg-theme',next);}catch(_){}
-  });
-  const install=header.querySelector('.install-app');
-  header.insertBefore(toggle,install||header.querySelector('.menu')||header.querySelector('nav'));
-  applyTheme(saved);
-});
+/* The ministry website now uses dark appearance as its permanent default. */
+document.documentElement.dataset.theme='dark';
+try{localStorage.setItem('ypg-theme','dark');}catch(_){}
+const themeColor=document.querySelector('meta[name="theme-color"]');
+if(themeColor)themeColor.setAttribute('content','#101820');
