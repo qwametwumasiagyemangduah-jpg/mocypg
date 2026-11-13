@@ -1045,3 +1045,106 @@ button{font-family:inherit}
 .library-categories .section-head{margin-bottom:24px}
 .library-categories .section-head .muted{max-width:360px}
 @media(max-width:760px){.library-toolbar{grid-template-columns:1fr;gap:8px}.library-search-label,.library-toolbar input,.library-toolbar .directory-search-status{grid-column:1;grid-row:auto}.publication-library{grid-template-columns:1fr}.publication-card{padding:21px}.publication-card>p{min-height:0}.library-categories{margin-top:42px}}
+
+
+/* November 2026 — institution-wide parliamentary visual refinement
+   Remove decorative/illustrative treatments and standardise all pages. */
+:root{
+  --navy:#081a33;
+  --blue:#173b63;
+  --gold:#c6a15b;
+  --paper:#f5f5f2;
+  --ink:#172638;
+  --muted:#667384;
+  --line:#dfe3e7;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper)!important;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+}
+h1,h2,h3,.brand strong,.tech-card strong,.resource-links b,
+.person-info h3,.notice strong,.contact-card h3,
+.quick-access-card strong,.site-search-result strong{
+  font-family:"Bw Gradual","Bw Gradual DEMO",Arial,Helvetica,sans-serif;
+  letter-spacing:-.018em;
+}
+.top{
+  background:#fff!important;
+  box-shadow:0 2px 8px #07172f08!important;
+  backdrop-filter:none!important;
+}
+.brand img{border-radius:2px!important;box-shadow:none!important}
+.hero{
+  display:block!important;
+  min-height:0!important;
+  padding:clamp(58px,8vw,104px) max(8vw,28px)!important;
+  background:#081a33!important;
+  box-shadow:none!important;
+}
+.hero:before,.hero:after,.page-hero:before,.page-hero:after,
+.dark-section:before{display:none!important}
+.hero-copy{max-width:790px!important}
+.hero h1{max-width:760px;line-height:1.12}
+.hero-art{display:none!important}
+.hero .lead{max-width:680px}
+.btn,.install-app,.site-search-trigger{
+  border-radius:2px!important;
+  box-shadow:none!important;
+  transition:background-color .15s ease,border-color .15s ease!important;
+}
+.btn:hover,.install-app:hover,.site-search-result:hover,
+.quick-access-card:hover,.focus-grid article:hover,
+.org-node:hover,.resource-links a:hover{
+  transform:none!important;
+  box-shadow:none!important;
+}
+.gold{background:#d4b36f!important;color:#102039!important}
+.outline{background:transparent!important;border:1px solid #aab5c2!important}
+.ticker{background:#eeece6!important;border-top:1px solid var(--line)!important}
+.ticker span+span:before{background:var(--gold)!important}
+.section{background:#fff}
+.dark-section{background:#0b203d!important}
+.focus-grid article,.values article,.dept,.person,
+.quick-access-card,.home-update-card,.publication-card,
+.site-search-result,.empty-state,.contact-message-panel,
+.directory-tools,.site-search-form,.gallery-grid figure,
+.launch-fact,.launch-programme article{
+  border-radius:2px!important;
+  box-shadow:none!important;
+}
+.focus-grid article{
+  background:transparent!important;
+  border:1px solid #ffffff35!important;
+}
+.focus-grid article:hover{background:#ffffff08!important;border-color:#c6a15b!important}
+.callout,.quick-access{background:#f0eee8!important}
+.quick-access-card{border:1px solid var(--line)!important;border-top:2px solid var(--gold)!important}
+.person{border:1px solid var(--line)!important}
+.portrait{background:#e9e9e5!important}
+.portrait-placeholder{font-size:20px!important;font-weight:600!important}
+.dept,.values article{border:1px solid var(--line)!important;border-top:2px solid var(--gold)!important}
+.notice,.gallery-note,.launch-note{border-radius:0!important;box-shadow:none!important}
+.page-hero{
+  background:#081a33!important;
+  border:0!important;
+  border-bottom:2px solid var(--gold)!important;
+}
+.resource-links a:hover{padding-left:0!important;color:var(--blue)!important}
+.resource-links a{transition:none!important}
+.home-update-card,.publication-card,.quick-access-card,
+.gallery-grid figure,.launch-poster,.contact-card,
+.publication-notice,.news-feature{
+  border-radius:2px!important;
+  box-shadow:none!important;
+}
+.social{border-radius:2px!important}
+footer{background:#06152b!important;box-shadow:none!important}
+footer .social:hover{background:#173b63!important}
+.back-to-top{border-radius:2px!important}
+.welcome-toast{border-radius:2px!important;box-shadow:0 5px 18px #07172f18!important}
+.signal,.feature-icon,.empty-mark,.update-icon,.ticker i{display:none!important}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
