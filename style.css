@@ -1269,3 +1269,45 @@ footer .social:hover{background:#173b63!important}
   .top .menu{order:5}
   .top nav{order:6}
 }
+
+/* Mobile navigation reliability patch */
+@media (max-width: 680px) {
+  .top { position: relative; }
+  .top .menu {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 8px 12px !important;
+    position: relative;
+    z-index: 1002;
+    cursor: pointer;
+    color: #e8edf3 !important;
+    background: #192634 !important;
+    border: 1px solid #6f5c39 !important;
+    font-size: 25px !important;
+    line-height: 1 !important;
+  }
+  .top nav,
+  .top nav:not(.open) {
+    display: none !important;
+  }
+  .top nav.open {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    position: relative;
+    z-index: 1001;
+    background: #111923 !important;
+    border-top: 1px solid #334150 !important;
+    padding: 8px 0 !important;
+  }
+  .top nav.open a {
+    display: flex !important;
+    color: #e8edf3 !important;
+    padding: 12px 10px !important;
+    border-bottom: 1px solid #334150 !important;
+  }
+}
