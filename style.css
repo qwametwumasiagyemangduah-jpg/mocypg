@@ -1325,6 +1325,7 @@ body:has(a[href="/publications"].active) h3,
 .publication-card h2, .publication-card h3,
 .newsroom h1, .newsroom h2, .newsroom h3,
 .publications h1, .publications h2, .publications h3 {
+  color: #000000 !important;
   font-weight: 900 !important;
   letter-spacing: -0.025em;
 }
