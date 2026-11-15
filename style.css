@@ -1311,3 +1311,20 @@ footer .social:hover{background:#173b63!important}
     border-bottom: 1px solid #334150 !important;
   }
 }
+
+/* Newsroom and Publications: stronger heading hierarchy for dark theme */
+body:has(a[href="/newsroom"].active) h1,
+body:has(a[href="/newsroom"].active) h2,
+body:has(a[href="/newsroom"].active) h3,
+body:has(a[href="/publications"].active) h1,
+body:has(a[href="/publications"].active) h2,
+body:has(a[href="/publications"].active) h3,
+.newsroom-page h1, .newsroom-page h2, .newsroom-page h3,
+.publications-page h1, .publications-page h2, .publications-page h3,
+.news-card h2, .news-card h3,
+.publication-card h2, .publication-card h3,
+.newsroom h1, .newsroom h2, .newsroom h3,
+.publications h1, .publications h2, .publications h3 {
+  font-weight: 900 !important;
+  letter-spacing: -0.025em;
+}
