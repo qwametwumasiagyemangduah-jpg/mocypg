@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {"source": "/about", "destination": "/about.html"},
+    {"source": "/leadership", "destination": "/leadership.html"},
+    {"source": "/departments", "destination": "/departments.html"},
+    {"source": "/programmes", "destination": "/programmes.html"},
+    {"source": "/newsroom", "destination": "/newsroom.html"},
+    {"source": "/launch", "destination": "/launch.html"},
+    {"source": "/publications", "destination": "/publications.html"},
+    {"source": "/contact", "destination": "/contact.html"},
+    {"source": "/gallery", "destination": "/gallery.html"},
+    {"source": "/search", "destination": "/search.html"},
+    {"source": "/digital-citizenship", "destination": "/digital-citizenship.html"},
+    {"source": "/press-release-parliamentary-visit-ghana70", "destination": "/press-release-parliamentary-visit-ghana70.html"}
+  ]
+}
