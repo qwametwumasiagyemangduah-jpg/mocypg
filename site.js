@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     ['Home','index.html'],['About the Ministry','about.html'],['Leadership','leadership.html'],
     ['Departments','departments.html'],['Programmes','programmes.html'],['Newsroom','newsroom.html'],
     ['Launch and Swearing-In','launch.html'],['Publications','publications.html'],
-    ['Gallery','gallery.html'],['Digital Citizenship Programme','digital-citizenship.html'],['Contact','contact.html']
+    ['Gallery','/gallery'],['Digital Citizenship Programme','digital-citizenship.html'],['Contact','/contact']
   ];
   const normalize=s=>(s||'').toLocaleLowerCase().replace(/\s+/g,' ').trim();
   let indexPromise;
@@ -246,13 +246,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     input.addEventListener('input',()=>{if(!input.value.trim()){results.replaceChildren();status.textContent='Enter a search term to explore the website.';}});
   }
   const nav=document.querySelector('.top nav'),header=document.querySelector('.top');
-  if(nav&&!nav.querySelector('a[href="gallery.html"]')){
-    const link=document.createElement('a');link.href='gallery.html';link.textContent='Gallery';
-    const contact=nav.querySelector('a[href="contact.html"]');nav.insertBefore(link,contact||null);
+  if(nav&&!nav.querySelector('a[href="/gallery"]')){
+    const link=document.createElement('a');link.href='/gallery';link.textContent='Gallery';
+    const contact=nav.querySelector('a[href="/contact"]');nav.insertBefore(link,contact||null);
   }
   if(header&&!header.querySelector('.site-search-trigger')){
     const button=document.createElement('button');button.type='button';button.className='site-search-trigger';button.setAttribute('aria-label','Search the ministry website');button.innerHTML='<span aria-hidden="true">⌕</span> Search';
-    button.addEventListener('click',()=>{location.href='search.html';});
+    button.addEventListener('click',()=>{location.href='/search';});
     const menu=header.querySelector('.menu');header.insertBefore(button,menu||nav||null);
   }
 });
