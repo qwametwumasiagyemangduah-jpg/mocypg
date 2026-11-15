@@ -46,26 +46,8 @@ document.addEventListener('DOMContentLoaded',()=>{\n  // Time-aware welcome toas
   }
 
   const b=document.querySelector('.menu'),n=document.querySelector('.top nav');
-  if(b&&n){
-    const setMenuState = open => {
-      n.classList.toggle('open', open);
-      b.setAttribute('aria-expanded', String(open));
-      b.textContent = open ? '×' : '☰';
-      b.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-    };
-    b.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopPropagation();
-      setMenuState(b.getAttribute('aria-expanded') !== 'true');
-    });
-    // Keep the mobile menu usable after viewport changes and close it on outside taps.
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 680) setMenuState(false);
-    }, { passive: true });
-    document.addEventListener('click', event => {
-      if (n.classList.contains('open') && !event.target.closest('.top')) setMenuState(false);
-    });
-  }
+  // The menu button uses a self-contained inline toggle in the page markup.
+  // Keep these references for the close-after-navigation and Escape-key handlers below.
 
   // Add a visible install action to the existing site header.
   const header=document.querySelector('.top');
