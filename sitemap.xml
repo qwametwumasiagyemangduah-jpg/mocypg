@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://mocypg.vercel.app/</loc></url>
-  <url><loc>https://mocypg.vercel.app/about.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/leadership.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/departments.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/programmes.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/newsroom.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/launch.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/publications.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/gallery.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/search.html</loc></url>
-  <url><loc>https://mocypg.vercel.app/contact.html</loc></url>
+  <url><loc>https://mocypg.vercel.app/about</loc></url>
+  <url><loc>https://mocypg.vercel.app/leadership</loc></url>
+  <url><loc>https://mocypg.vercel.app/departments</loc></url>
+  <url><loc>https://mocypg.vercel.app/programmes</loc></url>
+  <url><loc>https://mocypg.vercel.app/newsroom</loc></url>
+  <url><loc>https://mocypg.vercel.app/launch</loc></url>
+  <url><loc>https://mocypg.vercel.app/publications</loc></url>
+  <url><loc>https://mocypg.vercel.app/gallery</loc></url>
+  <url><loc>https://mocypg.vercel.app/search</loc></url>
+  <url><loc>https://mocypg.vercel.app/contact</loc></url>
 </urlset>
