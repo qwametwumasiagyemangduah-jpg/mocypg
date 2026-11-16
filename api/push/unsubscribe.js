@@ -1,21 +1,18 @@
-const REDIS_KEY = "mocypg:push:subscriptions";
-async function redis(command) {
-  const response = await fetch(process.env.UPSTASH_REDIS_REST_URL, { method: "POST", headers: { Authorization: "Bearer " + process.env.UPSTASH_REDIS_REST_TOKEN, "Content-Type": "application/json" }, body: JSON.stringify(command) });
-  if (!response.ok) throw new Error("Storage request failed.");
-  const result = await response.json();
-  if (result.error) throw new Error(result.error);
-  return result.result;
-}
+import { json, onlyMethod, validSameOrigin, removeSubscription } from "../../lib/push-store.js";
+
 export default async function handler(req, res) {
-  res.setHeader("Cache-Control", "no-store");
-  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+  if (!onlyMethod(req, res, "POST")) return;
+  if (!validSameOrigin(req)) return json(res, 403, { error: "Invalid request origin." });
   try {
-    const endpoint = req.body?.endpoint;
-    if (!endpoint || new URL(endpoint).protocol !== "https:") return res.status(400).json({ error: "A valid endpoint is required." });
-    await redis(["HDEL", REDIS_KEY, endpoint]);
-    return res.status(200).json({ ok: true });
+    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const endpoint = body?.endpoint;
+    if (typeof endpoint !== "string" || !endpoint.startsWith("https://") || endpoint.length > 2048) {
+      return json(res, 400, { error: "Invalid subscription endpoint." });
+    }
+    await removeSubscription(endpoint);
+    return json(res, 200, { success: true });
   } catch (error) {
-    console.error("Push unsubscribe error:", error.message);
-    return res.status(503).json({ error: "Could not remove this subscription." });
+    console.error("Push unsubscribe failed:", error.message);
+    return json(res, 503, { error: "Could not update this device. Please try again later." });
   }
 }
