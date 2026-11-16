@@ -1,4 +1,4 @@
-const CACHE_NAME = "ypg-ministry-v26";
+const CACHE_NAME = "ypg-ministry-v27";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -6,7 +6,7 @@ const CORE_ASSETS = [
   "/leadership.html",
   "/departments.html",
   "/programmes.html",
-  "/newsroom.html",
+  "/newsroom",
   "/launch.html",
   "/publications.html",
   "/gallery.html",
@@ -71,7 +71,7 @@ self.addEventListener("fetch", (event) => {
 
 // Push delivery requires a push subscription and a trusted server-side sender.
 self.addEventListener("push", (event) => {
-  let data = { title: "Ministry of Communications YPG", body: "There is a new ministry update.", url: "/newsroom.html" };
+  let data = { title: "Ministry of Communication, Digital Technology and Innovation", body: "There is a new official Ministry update.", url: "/newsroom.html" };
   try { if (event.data) data = { ...data, ...event.data.json() }; } catch (_) {}
   event.waitUntil(
     self.registration.showNotification(data.title || "Ministry of Communications YPG", {
