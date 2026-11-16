@@ -1,4 +1,4 @@
-const CACHE_NAME = "ypg-ministry-v29";
+const CACHE_NAME = "ypg-ministry-v30";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -51,6 +51,27 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(async () => (await caches.match(request)) || (await caches.match("/offline.html")) || Response.error())
+    );
+    return;
+  }
+
+  // Always check the network first for scripts and styles so fixes deploy
+  // immediately instead of being hidden behind an old cached site.js/style.css.
+  const isCodeAsset = request.destination === "script" ||
+    request.destination === "style" ||
+    /\\.(?:js|css)(?:\\?|$)/i.test(url.pathname + url.search);
+
+  if (isCodeAsset) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(async () => (await caches.match(request)) || Response.error())
     );
     return;
   }
