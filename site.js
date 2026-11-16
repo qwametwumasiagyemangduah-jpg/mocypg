@@ -267,66 +267,66 @@ if(themeColor)themeColor.setAttribute('content','#101820');
 
 /* Ministry browser push-notification opt-in */
 document.addEventListener('DOMContentLoaded', () => {
-  const supported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
-  if (!supported || location.protocol !== 'https:') return;
+  if (location.pathname.startsWith('/notifications-admin')) return;
+  const secure = location.protocol === 'https:';
+  const supported = secure && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
   const panel = document.createElement('aside');
   panel.className = 'ministry-push-panel';
   panel.setAttribute('aria-label', 'Ministry notifications');
-  panel.innerHTML = '<button class="ministry-push-close" type="button" aria-label="Dismiss">×</button><div class="ministry-push-copy"><strong>Stay informed</strong><span>Get official updates from the Ministry of Communication, Digital Technology and Innovation.</span></div><div class="ministry-push-actions"><button class="ministry-push-enable" type="button">Enable notifications</button><button class="ministry-push-disable" type="button" hidden>Turn off</button></div><p class="ministry-push-status" role="status" aria-live="polite"></p>';
+  panel.innerHTML = '<button class="ministry-push-close" type="button" aria-label="Dismiss">×</button><div class="ministry-push-copy"><strong>Stay informed</strong><span>Receive official announcements from the Youth Parliament Ghana Ministry of Communications, Digital Technology &amp; Innovations.</span></div><div class="ministry-push-actions"><button class="ministry-push-enable" type="button">Enable notifications</button><button class="ministry-push-disable" type="button" hidden>Turn off</button></div><p class="ministry-push-status" role="status" aria-live="polite"></p>';
   document.body.appendChild(panel);
   const enable = panel.querySelector('.ministry-push-enable');
   const disable = panel.querySelector('.ministry-push-disable');
   const status = panel.querySelector('.ministry-push-status');
-  const close = () => { panel.classList.remove('is-visible'); try { sessionStorage.setItem('ministryPushDismissed', '1'); } catch (_) {} };
-  panel.querySelector('.ministry-push-close').addEventListener('click', close);
+  panel.querySelector('.ministry-push-close').addEventListener('click', () => panel.classList.remove('is-visible'));
   const b64ToBytes = value => {
     const padding = '='.repeat((4 - value.length % 4) % 4);
-    const base64 = (value + padding).replace(/-/g, '+').replace(/_/g, '/');
-    return Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    return Uint8Array.from(atob((value + padding).replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
   };
   const refresh = async () => {
+    if (!supported) {
+      enable.disabled = true;
+      status.textContent = !secure ? 'Open the secure Ministry website (https) to enable notifications.' : 'This browser does not support web push. Try an updated Chrome browser.';
+      return;
+    }
     try {
       const registration = await navigator.serviceWorker.ready;
       const subscription = await registration.pushManager.getSubscription();
-      const permitted = Notification.permission === 'granted';
       enable.hidden = !!subscription;
       disable.hidden = !subscription;
       if (subscription) {
         status.textContent = 'Notifications are enabled on this device.';
         panel.classList.add('is-subscribed');
       } else if (Notification.permission === 'denied') {
-        status.textContent = 'Notifications are blocked in your browser settings.';
+        enable.disabled = true;
+        status.textContent = 'Notifications are blocked. Change this site’s permission in your browser settings.';
       } else {
-        status.textContent = 'Choose Enable notifications to receive Ministry updates.';
+        status.textContent = 'Tap Enable notifications, then choose Allow in your browser.';
       }
-    } catch (_) {
-      status.textContent = 'Notifications are currently unavailable on this device.';
-    }
+    } catch (_) { status.textContent = 'The notification service is loading. Please refresh and try again.'; }
   };
   enable.addEventListener('click', async () => {
+    if (!supported) return;
     enable.disabled = true;
-    status.textContent = 'Preparing notifications…';
+    status.textContent = 'Requesting permission…';
     try {
       const permission = await Notification.requestPermission();
       if (permission !== 'granted') {
-        status.textContent = permission === 'denied' ? 'Permission was denied. You can change this in browser settings.' : 'Notifications were not enabled.';
+        status.textContent = permission === 'denied' ? 'Permission was denied. Change it in your browser’s site settings.' : 'Notifications were not enabled.';
         return;
       }
       const configResponse = await fetch('/api/push/config', { cache: 'no-store' });
-      if (!configResponse.ok) throw new Error('The notification service is not configured yet.');
+      if (!configResponse.ok) throw new Error('The Ministry notification service is not configured. Please try later.');
       const config = await configResponse.json();
       const registration = await navigator.serviceWorker.ready;
       let subscription = await registration.pushManager.getSubscription();
       if (!subscription) subscription = await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToBytes(config.publicKey) });
       const saveResponse = await fetch('/api/push/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ subscription: subscription.toJSON() }) });
-      if (!saveResponse.ok) throw new Error('Your device could not be registered. Please try again.');
+      if (!saveResponse.ok) throw new Error('This device could not be registered. Please try again.');
       status.textContent = 'You are subscribed to Ministry updates on this device.';
       await refresh();
-    } catch (error) {
-      status.textContent = error.message || 'Could not enable notifications. Please try again.';
-    } finally {
-      enable.disabled = false;
-    }
+    } catch (error) { status.textContent = error.message || 'Could not enable notifications. Please try again.'; }
+    finally { enable.disabled = false; }
   });
   disable.addEventListener('click', async () => {
     disable.disabled = true;
@@ -334,19 +334,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const registration = await navigator.serviceWorker.ready;
       const subscription = await registration.pushManager.getSubscription();
       if (subscription) {
-        await fetch('/api/push/unsubscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: subscription.endpoint }) });
+        const response = await fetch('/api/push/unsubscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ endpoint: subscription.endpoint }) });
+        if (!response.ok) throw new Error('Could not update the subscription on the server.');
         await subscription.unsubscribe();
       }
-      status.textContent = 'Notifications have been turned off for this device.';
+      status.textContent = 'Notifications are turned off on this device.';
       await refresh();
-    } catch (_) {
-      status.textContent = 'Could not turn off notifications. Please try again.';
-    } finally { disable.disabled = false; }
+    } catch (error) { status.textContent = error.message || 'Could not turn off notifications.'; }
+    finally { disable.disabled = false; }
   });
   refresh();
-  let dismissed = false;
-  try { dismissed = sessionStorage.getItem('ministryPushDismissed') === '1'; } catch (_) {}
-  if (!dismissed && Notification.permission !== 'denied') {
-    window.setTimeout(() => panel.classList.add('is-visible'), 1400);
-  }
+  window.setTimeout(() => panel.classList.add('is-visible'), 1800);
 });
