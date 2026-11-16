@@ -1,7 +1,10 @@
+import { json, onlyMethod } from "../../lib/push-store.js";
+
 export default function handler(req, res) {
-  res.setHeader("Cache-Control", "no-store");
-  if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
-  const key = process.env.VAPID_PUBLIC_KEY;
-  if (!key) return res.status(503).json({ error: "Push notifications are not configured yet." });
-  return res.status(200).json({ publicKey: key });
+  if (!onlyMethod(req, res, "GET")) return;
+  const publicKey = process.env.VAPID_PUBLIC_KEY;
+  if (!publicKey || !process.env.VAPID_PRIVATE_KEY || !process.env.VAPID_SUBJECT) {
+    return json(res, 503, { error: "Push notifications are not configured." });
+  }
+  return json(res, 200, { publicKey });
 }
