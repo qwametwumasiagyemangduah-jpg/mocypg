@@ -8,6 +8,7 @@
     {"source": "/launch", "destination": "/launch.html"},
     {"source": "/publications", "destination": "/publications.html"},
     {"source": "/contact", "destination": "/contact.html"},
+    {"source": "/archive", "destination": "/archive.html"},
     {"source": "/gallery", "destination": "/gallery.html"},
     {"source": "/search", "destination": "/search.html"},
     {"source": "/digital-citizenship", "destination": "/digital-citizenship.html"},
