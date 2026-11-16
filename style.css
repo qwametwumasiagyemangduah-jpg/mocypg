@@ -1329,3 +1329,18 @@ body:has(a[href="/publications"].active) h3,
   font-weight: 900 !important;
   letter-spacing: -0.025em;
 }
+
+/* Ministry push notification subscription panel */
+.ministry-push-panel{position:fixed;z-index:10020;right:18px;bottom:18px;width:min(390px,calc(100vw - 28px));padding:20px 18px 15px;background:#14263a;border:1px solid rgba(226,190,112,.48);border-radius:16px;box-shadow:0 18px 55px rgba(0,0,0,.38);color:#f4f0e7;opacity:0;transform:translateY(18px);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.ministry-push-panel.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.ministry-push-copy{display:flex;flex-direction:column;gap:6px;padding-right:22px}
+.ministry-push-copy strong{font-size:17px;color:#f1d28e}
+.ministry-push-copy span{font-size:13px;line-height:1.55;color:#d5dde6}
+.ministry-push-actions{display:flex;gap:9px;margin-top:14px}
+.ministry-push-actions button{border:0;border-radius:8px;padding:10px 13px;font-weight:700;cursor:pointer}
+.ministry-push-enable{background:#d7b66f;color:#14263a}
+.ministry-push-disable{background:#293d52;color:#fff}
+.ministry-push-actions button:disabled{opacity:.6;cursor:wait}
+.ministry-push-close{position:absolute;right:10px;top:8px;background:transparent;border:0;color:#d5dde6;font-size:23px;cursor:pointer}
+.ministry-push-status{font-size:11px;line-height:1.4;color:#c2ccd7;margin:10px 0 0}
+@media(max-width:600px){.ministry-push-panel{right:10px;bottom:10px;width:calc(100vw - 20px);padding:17px 15px 13px}}
