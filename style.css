@@ -1344,3 +1344,8 @@ body:has(a[href="/publications"].active) h3,
 .ministry-push-close{position:absolute;right:10px;top:8px;background:transparent;border:0;color:#d5dde6;font-size:23px;cursor:pointer}
 .ministry-push-status{font-size:11px;line-height:1.4;color:#c2ccd7;margin:10px 0 0}
 @media(max-width:600px){.ministry-push-panel{right:10px;bottom:10px;width:calc(100vw - 20px);padding:17px 15px 13px}}
+
+/* Reliable visibility for the Ministry opt-in panel across mobile and desktop. */
+.ministry-push-panel{display:block!important;visibility:visible!important;z-index:2147483000!important}
+.ministry-push-panel.is-visible{opacity:1!important;transform:translateY(0)!important;pointer-events:auto!important}
+.ministry-push-panel[hidden]{display:none!important}
