@@ -236,11 +236,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     status.textContent='Searching published ministry pages…';
     buildIndex().then(index=>{
       const terms=q.split(' ').filter(Boolean);
-      const matches=index.map(page=>({...page,score:terms.reduce((n,term)=>n+(page.haystack.includes(term)?1:0),0)}))
-        .filter(page=>page.score>0).sort((a,b)=>b.score-a.score);
+      const matches=index.map(page=>{const hits=terms.filter(term=>page.haystack.includes(term)).length;const title=normalize(page.title+' '+page.label);const titleHits=terms.filter(term=>title.includes(term)).length;return {...page,score:hits, titleScore:titleHits, allTerms:hits===terms.length};})
+        .filter(page=>page.score>0).sort((a,b)=>Number(b.allTerms)-Number(a.allTerms)||b.titleScore-a.titleScore||b.score-a.score);
       results.replaceChildren();
       matches.forEach(page=>{
-        const card=document.createElement('a');card.className='site-search-result';card.href=page.url;
+        const card=document.createElement('a');card.className='site-search-result';card.href=page.url.startsWith('/')?page.url:'/'+page.url.replace(/^\\.\\//,'');
         const label=document.createElement('small');label.textContent=page.label;
         const title=document.createElement('strong');title.textContent=page.title;
         const excerpt=document.createElement('p');const first=terms.map(t=>page.text.toLocaleLowerCase().indexOf(t)).filter(i=>i>=0).sort((a,b)=>a-b)[0]||0;
