@@ -26,7 +26,7 @@ function validSession(req) {
 }
 function sameOrigin(req) {
   const origin = req.headers.origin;
-  return !origin || origin === "https://mocypg.vercel.app";
+  return origin === "https://mocypg.vercel.app";
 }
 function setCookie(res, value, maxAge) {
   res.setHeader("Set-Cookie", `${COOKIE}=${value}; Path=/api/push/admin; HttpOnly; Secure; SameSite=Strict; Max-Age=${maxAge}`);
