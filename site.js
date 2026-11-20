@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         .filter(page=>page.score>0).sort((a,b)=>Number(b.allTerms)-Number(a.allTerms)||b.titleScore-a.titleScore||b.score-a.score);
       results.replaceChildren();
       matches.forEach(page=>{
-        const card=document.createElement('a');card.className='site-search-result';card.href=page.url.startsWith('/')?page.url:'/'+page.url.replace(/^\\.\\//,'');
+        const card=document.createElement('a');card.className='site-search-result';card.href=page.url.startsWith('/')?page.url:'/'+page.url;
         const label=document.createElement('small');label.textContent=page.label;
         const title=document.createElement('strong');title.textContent=page.title;
         const excerpt=document.createElement('p');const first=terms.map(t=>page.text.toLocaleLowerCase().indexOf(t)).filter(i=>i>=0).sort((a,b)=>a-b)[0]||0;
